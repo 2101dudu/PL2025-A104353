@@ -53,4 +53,4 @@ $ python3 tpc1.py < sample2.txt
 
 ## Conclusões
 
-O programa revela-se desnecessáriamente complexto, mas fucnional.
+O programa revela-se desnecessariamente complexto, mas fucnional.
