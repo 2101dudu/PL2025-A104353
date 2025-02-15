@@ -25,3 +25,5 @@ for linha in sys.stdin:
             print(total)
         else:
             i += 1
+
+print(total)

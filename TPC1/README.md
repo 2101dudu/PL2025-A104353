@@ -1,7 +1,10 @@
 # TPC1
 
-- 31/01/2025
-- Eduardo Faria, a104353
+![foto perfil](../foto_perfil.jpg)
+
+- **Data**: 31/01/2025
+- **Nome**: Eduardo de Oliveira Sousa Faria
+- **Número**: a104353
 
 ## Resumo
 
