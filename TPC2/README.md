@@ -14,18 +14,9 @@ Dada a natureza do documento de input, certas expressões possuem _safety measur
 #### 1.
 
 Nesta pergunta, é pedido uma lista ordenada dos compositores musicais. Começei por filtrar o nome dos mesmos utilizando a seguinte expressão: `\d\d\d\d;[^;]*;([^;]*);`
-
-    - `\d\d\d\d;`: encontra o padrão de 4 dígitos seguidos, útil para o ano associado a cada entrada. ex.: ...;`1914;`...
-    - `[^;]*;`: encontra qualquer caracter que não seja `;`. deste modo, seleciona-se o atributo período. ex.: ...;`Medieval;`... ou ...;`Século XX;`...
-    - `([^;]*)`: seleciona o padrão associado ao atributo do nome do compositor
-
-_Exemplo_
-
-```
-Three Pieces for Orchestra;"Alban Berg composed his Three Pieces for Orchestra (German – Drei Orchesterstücke), Op. 6 between 1913 and 1915. It is dedicated ""to my
-         teacher and friend Arnold Schoenberg in immeasurable gratitude and love"". A revised version of the score was published in 1929 by Universal
-         Edition.";1470;Medieval;Nicolaus Bruhns;01:46:33;O99
-```
+- `\d\d\d\d;`: encontra o padrão de 4 dígitos seguidos, útil para o ano associado a cada entrada. ex.: ...;`1914;`...
+- `[^;]*;`: encontra qualquer caracter que não seja `;`. deste modo, seleciona-se o atributo período. ex.: ...;`Medieval;`... ou ...;`Século XX;`...
+- `([^;]*)`: seleciona o padrão associado ao atributo do nome do compositor
 
 Deste modo, é possível extrair o grupo resultado de `re.search(...)` para obter o nome do compositor. Juntando os nomes de todos os compositores numa listaq, e dando _sort_ da mesma, obtemos o resultado pretendido.
 
@@ -35,30 +26,13 @@ A segunda pergunta pretende um resultado que demonstre o número de obras por pe
 Esta expressão é parecida com a usada anteriormente, alterando apenas o conjunto selecionado pelo uso dos parênteses para favorecer o atributo do período.
 Restou apenas registar quantas vezes cada período aparecia para obter o resultado esperado.
 
-_Exemplo_
-
-```
-Three Pieces for Orchestra;"Alban Berg composed his Three Pieces for Orchestra (German – Drei Orchesterstücke), Op. 6 between 1913 and 1915. It is dedicated ""to my
-         teacher and friend Arnold Schoenberg in immeasurable gratitude and love"". A revised version of the score was published in 1929 by Universal
-         Edition.";1470;Medieval;Nicolaus Bruhns;01:46:33;O99
-```
-
 #### 3.
 
 A última pergunta esperava por um _output_ representativo de uma categorização dos vários nomes das obras de um período, ordenadas por ordem alfabética.
 Para isso, após algumas iterações, fiz uso da expressão regular `(((\d\d\d\d;)([^;]*);.*$)|^([^;\n]*);[^ \w])`.
-
-    - `(...|...)`: permite à expressão funcionar de dois modos — encontrar o nome da obra ou o período da mesma
-    - `((\d\d\d\d;)([^;]*);.*$)`: procura pelo atributo período a partir do fim da linha
-    - `^([^;\n]*);[^ \w])`: procura pelo atributo do nome da obra
-
-_Exemplo_
-
-```
-Three Pieces for Orchestra;"Alban Berg composed his Three Pieces for Orchestra (German – Drei Orchesterstücke), Op. 6 between 1913 and 1915. It is dedicated ""to my
-         teacher and friend Arnold Schoenberg in immeasurable gratitude and love"". A revised version of the score was published in 1929 by Universal
-         Edition.";1470;Medieval;Nicolaus Bruhns;01:46:33;O99
-```
+- `(...|...)`: permite à expressão funcionar de dois modos — encontrar o nome da obra ou o período da mesma
+- `((\d\d\d\d;)([^;]*);.*$)`: procura pelo atributo período a partir do fim da linha
+- `^([^;\n]*);[^ \w])`: procura pelo atributo do nome da obra
 
 Esta expressão regular é bastante robusta e é capaz de lidar com diversos cenários, como a inclusão de um `;` no texto descritivo. Restou apenas registar os vários períodos e associar, a cada um, obras da sua época.
 
@@ -92,7 +66,3 @@ Século XX : 18 ; ['Berceuse;"', 'Eleven Chorale Preludes, Op. 122;"', 'Fürchte
 Romântico : 19 ; ['Book II;"', 'Fantasy No. 4;"', 'Feu d\'artifice;"', 'Feuilles d\'Album;"', 'Grande Tarantelle;"', 'Jeux d\'enfants;"', 'Lobet den Herrn, alle Heiden;"', 'Moments musicaux;"', 'Overture, Scherzo and Finale;"', 'Preludes Op. 11;"', 'Preludes Op. 59;"', 'Präludium und Fuge über das Thema B-A-C-H;"', 'Psalm 42 , Op. 42;"', 'Salve Regina;"', 'Scherzo No. 2;"', 'Syrinx;"', 'Waltzes, Op. 34;"', 'Études Op. 25;"', 'Études Op.10;"']
 Contemporâneo : 7 ; ['Impromptu Op.51;"', 'Les cinq doigts;"', 'Polonaises, Op.40;"', 'Preludes Opus 51;"', 'Rhapsodies, Op. 79;"', 'Sonnerie de Ste-Geneviève du Mont-de-Paris;"', 'Études Op. 25;"']
 ```
-
-## Conclusões
-
-O programa revela-se desnecessariamente complexto, mas fucnional.
