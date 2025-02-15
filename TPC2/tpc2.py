@@ -34,7 +34,7 @@ def title_per_category():
         m = re.search(r'(((\d\d\d\d;)([^;]*);.*$)|^([^;\n]*);[^ \w])', linha)
         if m is not None:
             if m[2] is None:
-                name = m.group(1)
+                name = m.group(5)
             else:
                 category = m.group(4)
                 if category not in temp:
@@ -43,7 +43,7 @@ def title_per_category():
 
     for key, value in temp.items():
         value.sort()
-        print(key, ":", len(value), ";", value)
+        print(key, ":", len(value), ":", value)
 
 
 # alphabetical_order()
