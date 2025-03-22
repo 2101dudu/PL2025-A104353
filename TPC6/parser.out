@@ -1,0 +1,217 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> Exp
+Rule 2     Exp -> Exp ADD Termo
+Rule 3     Exp -> Exp SUB Termo
+Rule 4     Exp -> Termo
+Rule 5     Termo -> Termo MUL Fator
+Rule 6     Termo -> Fator
+Rule 7     Fator -> PARA Exp PARF
+Rule 8     Fator -> NUM
+
+Terminals, with rules where they appear
+
+ADD                  : 2
+MUL                  : 5
+NUM                  : 8
+PARA                 : 7
+PARF                 : 7
+SUB                  : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+Exp                  : 1 2 3 7
+Fator                : 5 6
+S                    : 0
+Termo                : 2 3 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . Exp
+    (2) Exp -> . Exp ADD Termo
+    (3) Exp -> . Exp SUB Termo
+    (4) Exp -> . Termo
+    (5) Termo -> . Termo MUL Fator
+    (6) Termo -> . Fator
+    (7) Fator -> . PARA Exp PARF
+    (8) Fator -> . NUM
+
+    PARA            shift and go to state 5
+    NUM             shift and go to state 6
+
+    S                              shift and go to state 1
+    Exp                            shift and go to state 2
+    Termo                          shift and go to state 3
+    Fator                          shift and go to state 4
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> Exp .
+    (2) Exp -> Exp . ADD Termo
+    (3) Exp -> Exp . SUB Termo
+
+    $end            reduce using rule 1 (S -> Exp .)
+    ADD             shift and go to state 7
+    SUB             shift and go to state 8
+
+
+state 3
+
+    (4) Exp -> Termo .
+    (5) Termo -> Termo . MUL Fator
+
+    ADD             reduce using rule 4 (Exp -> Termo .)
+    SUB             reduce using rule 4 (Exp -> Termo .)
+    $end            reduce using rule 4 (Exp -> Termo .)
+    PARF            reduce using rule 4 (Exp -> Termo .)
+    MUL             shift and go to state 9
+
+
+state 4
+
+    (6) Termo -> Fator .
+
+    MUL             reduce using rule 6 (Termo -> Fator .)
+    ADD             reduce using rule 6 (Termo -> Fator .)
+    SUB             reduce using rule 6 (Termo -> Fator .)
+    $end            reduce using rule 6 (Termo -> Fator .)
+    PARF            reduce using rule 6 (Termo -> Fator .)
+
+
+state 5
+
+    (7) Fator -> PARA . Exp PARF
+    (2) Exp -> . Exp ADD Termo
+    (3) Exp -> . Exp SUB Termo
+    (4) Exp -> . Termo
+    (5) Termo -> . Termo MUL Fator
+    (6) Termo -> . Fator
+    (7) Fator -> . PARA Exp PARF
+    (8) Fator -> . NUM
+
+    PARA            shift and go to state 5
+    NUM             shift and go to state 6
+
+    Exp                            shift and go to state 10
+    Termo                          shift and go to state 3
+    Fator                          shift and go to state 4
+
+state 6
+
+    (8) Fator -> NUM .
+
+    MUL             reduce using rule 8 (Fator -> NUM .)
+    ADD             reduce using rule 8 (Fator -> NUM .)
+    SUB             reduce using rule 8 (Fator -> NUM .)
+    $end            reduce using rule 8 (Fator -> NUM .)
+    PARF            reduce using rule 8 (Fator -> NUM .)
+
+
+state 7
+
+    (2) Exp -> Exp ADD . Termo
+    (5) Termo -> . Termo MUL Fator
+    (6) Termo -> . Fator
+    (7) Fator -> . PARA Exp PARF
+    (8) Fator -> . NUM
+
+    PARA            shift and go to state 5
+    NUM             shift and go to state 6
+
+    Termo                          shift and go to state 11
+    Fator                          shift and go to state 4
+
+state 8
+
+    (3) Exp -> Exp SUB . Termo
+    (5) Termo -> . Termo MUL Fator
+    (6) Termo -> . Fator
+    (7) Fator -> . PARA Exp PARF
+    (8) Fator -> . NUM
+
+    PARA            shift and go to state 5
+    NUM             shift and go to state 6
+
+    Termo                          shift and go to state 12
+    Fator                          shift and go to state 4
+
+state 9
+
+    (5) Termo -> Termo MUL . Fator
+    (7) Fator -> . PARA Exp PARF
+    (8) Fator -> . NUM
+
+    PARA            shift and go to state 5
+    NUM             shift and go to state 6
+
+    Fator                          shift and go to state 13
+
+state 10
+
+    (7) Fator -> PARA Exp . PARF
+    (2) Exp -> Exp . ADD Termo
+    (3) Exp -> Exp . SUB Termo
+
+    PARF            shift and go to state 14
+    ADD             shift and go to state 7
+    SUB             shift and go to state 8
+
+
+state 11
+
+    (2) Exp -> Exp ADD Termo .
+    (5) Termo -> Termo . MUL Fator
+
+    ADD             reduce using rule 2 (Exp -> Exp ADD Termo .)
+    SUB             reduce using rule 2 (Exp -> Exp ADD Termo .)
+    $end            reduce using rule 2 (Exp -> Exp ADD Termo .)
+    PARF            reduce using rule 2 (Exp -> Exp ADD Termo .)
+    MUL             shift and go to state 9
+
+
+state 12
+
+    (3) Exp -> Exp SUB Termo .
+    (5) Termo -> Termo . MUL Fator
+
+    ADD             reduce using rule 3 (Exp -> Exp SUB Termo .)
+    SUB             reduce using rule 3 (Exp -> Exp SUB Termo .)
+    $end            reduce using rule 3 (Exp -> Exp SUB Termo .)
+    PARF            reduce using rule 3 (Exp -> Exp SUB Termo .)
+    MUL             shift and go to state 9
+
+
+state 13
+
+    (5) Termo -> Termo MUL Fator .
+
+    MUL             reduce using rule 5 (Termo -> Termo MUL Fator .)
+    ADD             reduce using rule 5 (Termo -> Termo MUL Fator .)
+    SUB             reduce using rule 5 (Termo -> Termo MUL Fator .)
+    $end            reduce using rule 5 (Termo -> Termo MUL Fator .)
+    PARF            reduce using rule 5 (Termo -> Termo MUL Fator .)
+
+
+state 14
+
+    (7) Fator -> PARA Exp PARF .
+
+    MUL             reduce using rule 7 (Fator -> PARA Exp PARF .)
+    ADD             reduce using rule 7 (Fator -> PARA Exp PARF .)
+    SUB             reduce using rule 7 (Fator -> PARA Exp PARF .)
+    $end            reduce using rule 7 (Fator -> PARA Exp PARF .)
+    PARF            reduce using rule 7 (Fator -> PARA Exp PARF .)
+
